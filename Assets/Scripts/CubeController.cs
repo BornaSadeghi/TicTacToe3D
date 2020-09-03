@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
-    // speed of rotation: public allows it to be changed in Unity inspector
-    public int speed = 20;
+    // below variables are for expanding and contracting the faces
     public GameObject[] faces;
+    public float tolerance;
+    public Vector3[] startPoints;
+    public Vector3[] endPoints;
     public bool isExpanded = false;
-    public int expandDistance = 2;
-    // Start is called before the first frame update - unused in this case
+    public float expandDistance = 2f;
     void Awake()
     {
         faces = GameObject.FindGameObjectsWithTag("Face");
@@ -17,25 +18,38 @@ public class CubeController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {  
-        // Input.GetAxis is a built in control that takes in the horizontal arrow keys
-        float rotateHorizontal = Input.GetAxis("Horizontal");
-        // if one of the horizontal arrow keys is pressed
-        if (rotateHorizontal != 0) {
-            // rotate the cube (it actually calls "this.transform.Rotate" but the "this" is not necessary)
-            transform.Rotate (new Vector3 (0, rotateHorizontal * speed, 0) * Time.deltaTime);
+    {
+        if (Input.GetKeyDown(KeyCode.F)) {
+            isExpanded = !isExpanded;
         }
 
-        if (Input.GetKey(KeyCode.F)) {
-            ChangeCube(isExpanded);
+        if (isExpanded) {
+            ChangeToCube();
+        } else {
+            OpenFaces();
         }
     }
-
-    void ChangeCube(bool isExpanded) {
-        if (isExpanded) {
-
-        } else {
-
+    void OpenFaces() {
+        // code to expand into 3 faces
+        if (faces[0].transform.position != endPoints[0]) {
+            faces[0].transform.position += new Vector3 (0.5f, 0.0f, 0);
+            faces[2].transform.position += new Vector3 (-0.5f, 0.0f, 0);
         }
+        if (faces[2].transform.position != endPoints[1]) {
+        }
+        // sets isExpanded to false for next time
+        isExpanded = false;
+    }
+    void ChangeToCube() {
+        // Vector3 heading1 = currentTarget - faces[0].transform.position;
+        // add the respective Vector3 to each face until it reaches the new point
+        if (faces[0].transform.position != startPoints[0]) {
+            faces[0].transform.position += new Vector3 (-0.5f, 0.0f, 0);
+            faces[2].transform.position += new Vector3 (0.5f, 0.0f, 0);
+        }
+        if (faces[2].transform.position != startPoints[1]) {
+        }
+        // sets isExpanded to true for next time
+        isExpanded = true;
     }
 }

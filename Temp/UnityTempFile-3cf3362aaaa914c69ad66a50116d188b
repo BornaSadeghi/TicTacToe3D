@@ -294,4 +294,5 @@
 /define:UNITY_STANDALONE
 /define:UNITY_STANDALONE_OSX
 /define:UNITY_TEAM_LICENSE
+"Assets/Scripts/CameraController.cs"
 "Assets/Scripts/CubeController.cs"
