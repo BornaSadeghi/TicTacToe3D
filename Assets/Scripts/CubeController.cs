@@ -41,7 +41,6 @@ public class CubeController : MonoBehaviour
         isExpanded = false;
     }
     void ChangeToCube() {
-        // Vector3 heading1 = currentTarget - faces[0].transform.position;
         // add the respective Vector3 to each face until it reaches the new point
         if (faces[0].transform.position != startPoints[0]) {
             faces[0].transform.position += new Vector3 (-0.5f, 0.0f, 0);
