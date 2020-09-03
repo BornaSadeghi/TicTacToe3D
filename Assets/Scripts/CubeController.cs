@@ -26,7 +26,7 @@ public class CubeController : MonoBehaviour
             transform.Rotate (new Vector3 (0, rotateHorizontal * speed, 0) * Time.deltaTime);
         }
 
-        if (Input.GetKey("F")) {
+        if (Input.GetKey(KeyCode.F)) {
             ChangeCube(isExpanded);
         }
     }
