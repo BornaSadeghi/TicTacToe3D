@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faces: []
-  tolerance: 0
+  tolerance: 0.5
   startPoints:
   - {x: 0, y: 0, z: 0}
   - {x: -0.6666667, y: 0, z: 0}
